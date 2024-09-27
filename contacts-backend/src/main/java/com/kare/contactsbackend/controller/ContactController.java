@@ -33,4 +33,9 @@ public class ContactController {
   public ResponseEntity<ContactResponse> getSingleContact(@PathVariable Long id) {
     return new ResponseEntity<>(this.contactService.getContact(id), HttpStatus.OK);
   }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<ContactResponse> updateContact(@PathVariable Long id, @RequestBody ContactRequest contactRequest) {
+    return new ResponseEntity<>(this.contactService.updateContact(id, contactRequest), HttpStatus.OK);
+  }
 }

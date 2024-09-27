@@ -36,4 +36,12 @@ public class ContactService {
     Contact contact = repository.findById(id).orElseThrow(() -> new ContactNotFoundException("Contact not found with id: " + id));
     return mapper.toContactResponse(contact);
   }
+
+  public ContactResponse updateContact(Long id, ContactRequest contactRequest) {
+    Contact contact = repository.findById(id).orElseThrow(() -> new ContactNotFoundException("Contact not found with id: " + id));
+    contact.setFullName(contactRequest.getFullName());
+    contact.setPhoneNumber(contactRequest.getPhoneNumber());
+    contact.setEmail(contactRequest.getEmail());
+    return mapper.toContactResponse(repository.save(contact));
+  }
 }
