@@ -19,13 +19,17 @@ public class Contact {
   @Column(name = "email", columnDefinition = "VARCHAR(50) NOT NULL")
   private String email;
 
+  @Column(name = "image_url", columnDefinition = "TEXT")
+  private String imageUrl;
+
   public Contact() {
   }
 
-  public Contact(String fullName, String phoneNumber, String email) {
+  public Contact(String fullName, String phoneNumber, String email, String imageUrl) {
     this.fullName = fullName;
     this.phoneNumber = phoneNumber;
     this.email = email;
+    this.imageUrl = imageUrl;
   }
 
   public Long getId() {
@@ -58,5 +62,13 @@ public class Contact {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }

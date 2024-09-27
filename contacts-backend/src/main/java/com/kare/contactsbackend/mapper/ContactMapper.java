@@ -18,6 +18,7 @@ public class ContactMapper {
         response.setFullName(contact.getFullName());
         response.setPhoneNumber(contact.getPhoneNumber());
         response.setEmail(contact.getEmail());
+        response.setImageUrl(contact.getImageUrl());
         return response;
     }
 

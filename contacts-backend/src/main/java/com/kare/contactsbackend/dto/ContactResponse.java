@@ -7,6 +7,8 @@ public class ContactResponse {
   private String phoneNumber;
   private String email;
 
+  private String imageUrl;
+
   public ContactResponse() {
   }
 
@@ -40,5 +42,13 @@ public class ContactResponse {
 
   public void setEmail(String email) {
     this.email = email;
+  }
+
+  public String getImageUrl() {
+    return imageUrl;
+  }
+
+  public void setImageUrl(String imageUrl) {
+    this.imageUrl = imageUrl;
   }
 }
