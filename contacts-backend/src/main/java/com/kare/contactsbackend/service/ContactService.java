@@ -37,11 +37,12 @@ public class ContactService {
     return mapper.toContactResponse(contact);
   }
 
-  public ContactResponse updateContact(Long id, ContactRequest contactRequest) {
+  public ContactResponse updateContact(Long id, ContactRequest contactRequest, String imageUrl) {
     Contact contact = repository.findById(id).orElseThrow(() -> new ContactNotFoundException("Contact not found with id: " + id));
     contact.setFullName(contactRequest.getFullName());
     contact.setPhoneNumber(contactRequest.getPhoneNumber());
     contact.setEmail(contactRequest.getEmail());
+    contact.setImageUrl(imageUrl);
     return mapper.toContactResponse(repository.save(contact));
   }
 

@@ -43,8 +43,12 @@ public class ContactController {
   }
 
   @PutMapping("/{id}")
-  public ResponseEntity<ContactResponse> updateContact(@PathVariable Long id, @RequestBody ContactRequest contactRequest) {
-    return new ResponseEntity<>(this.contactService.updateContact(id, contactRequest), HttpStatus.OK);
+  public ResponseEntity<ContactResponse> updateContact(@PathVariable Long id, @RequestPart ContactRequest contactRequest, @RequestPart(value = "file", required = false) MultipartFile file) {
+    String imageUrl = "";
+    if (file != null) {
+      imageUrl = this.fileService.uploadFile(file);
+    }
+    return new ResponseEntity<>(this.contactService.updateContact(id, contactRequest, imageUrl), HttpStatus.OK);
   }
 
   @DeleteMapping("/{id}")
