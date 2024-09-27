@@ -1,6 +1,8 @@
 package com.kare.contactsbackend.service;
 
 import com.kare.contactsbackend.dto.ContactListResponse;
+import com.kare.contactsbackend.dto.ContactRequest;
+import com.kare.contactsbackend.dto.ContactResponse;
 import com.kare.contactsbackend.entity.Contact;
 import com.kare.contactsbackend.mapper.ContactMapper;
 import com.kare.contactsbackend.repository.ContactRepository;
@@ -22,5 +24,10 @@ public class ContactService {
   public ContactListResponse getAllContacts() {
     List<Contact> contacts = repository.findAll();
     return mapper.toContactListResponse(contacts);
+  }
+
+  public ContactResponse saveContact(ContactRequest contactRequest) {
+    Contact entity = mapper.toContact(contactRequest);
+    return this.mapper.toContactResponse(repository.save(entity));
   }
 }

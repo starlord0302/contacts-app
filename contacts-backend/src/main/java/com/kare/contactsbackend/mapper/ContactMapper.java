@@ -1,6 +1,7 @@
 package com.kare.contactsbackend.mapper;
 
 import com.kare.contactsbackend.dto.ContactListResponse;
+import com.kare.contactsbackend.dto.ContactRequest;
 import com.kare.contactsbackend.dto.ContactResponse;
 import com.kare.contactsbackend.entity.Contact;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,14 @@ public class ContactMapper {
                 .collect(Collectors.toList());
         response.setContacts(contactResponses);
         return response;
+    }
+
+    public Contact toContact(ContactRequest contactRequest) {
+        Contact contact = new Contact();
+        contact.setFullName(contactRequest.getFullName());
+        contact.setPhoneNumber(contactRequest.getPhoneNumber());
+        contact.setEmail(contactRequest.getEmail());
+        return contact;
     }
 
 }

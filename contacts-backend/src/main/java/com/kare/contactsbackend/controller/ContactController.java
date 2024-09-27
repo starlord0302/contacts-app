@@ -1,12 +1,12 @@
 package com.kare.contactsbackend.controller;
 
 import com.kare.contactsbackend.dto.ContactListResponse;
+import com.kare.contactsbackend.dto.ContactRequest;
+import com.kare.contactsbackend.dto.ContactResponse;
 import com.kare.contactsbackend.service.ContactService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/contacts")
@@ -20,6 +20,12 @@ public class ContactController {
 
   @GetMapping
   public ResponseEntity<ContactListResponse> getAllContacts() {
-    return new ResponseEntity<>(contactService.getAllContacts(), HttpStatus.OK);
+    return new ResponseEntity<>(this.contactService.getAllContacts(), HttpStatus.OK);
+  }
+
+  @PostMapping
+  public ResponseEntity<ContactResponse> createContact(@RequestBody ContactRequest contactRequest) {
+    ContactResponse contactResponse = this.contactService.saveContact(contactRequest);
+    return new ResponseEntity<>(contactResponse, HttpStatus.CREATED);
   }
 }
