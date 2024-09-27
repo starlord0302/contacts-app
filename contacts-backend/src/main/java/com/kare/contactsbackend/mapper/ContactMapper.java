@@ -31,11 +31,12 @@ public class ContactMapper {
         return response;
     }
 
-    public Contact toContact(ContactRequest contactRequest) {
+    public Contact toContact(ContactRequest contactRequest, String imageUrl) {
         Contact contact = new Contact();
         contact.setFullName(contactRequest.getFullName());
         contact.setPhoneNumber(contactRequest.getPhoneNumber());
         contact.setEmail(contactRequest.getEmail());
+        contact.setImageUrl(imageUrl);
         return contact;
     }
 

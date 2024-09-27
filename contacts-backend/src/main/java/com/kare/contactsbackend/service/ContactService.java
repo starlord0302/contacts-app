@@ -27,8 +27,8 @@ public class ContactService {
     return mapper.toContactListResponse(contacts);
   }
 
-  public ContactResponse saveContact(ContactRequest contactRequest) {
-    Contact entity = mapper.toContact(contactRequest);
+  public ContactResponse saveContact(ContactRequest contactRequest, String imageUrl) {
+    Contact entity = mapper.toContact(contactRequest, imageUrl);
     return this.mapper.toContactResponse(repository.save(entity));
   }
 

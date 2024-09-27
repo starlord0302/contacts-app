@@ -4,18 +4,22 @@ import com.kare.contactsbackend.dto.ContactListResponse;
 import com.kare.contactsbackend.dto.ContactRequest;
 import com.kare.contactsbackend.dto.ContactResponse;
 import com.kare.contactsbackend.service.ContactService;
+import com.kare.contactsbackend.service.FileService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/contacts")
 public class ContactController {
 
   private final ContactService contactService;
+  private final FileService fileService;
 
-  public ContactController(ContactService contactService) {
+  public ContactController(ContactService contactService, FileService fileService) {
     this.contactService = contactService;
+    this.fileService = fileService;
   }
 
   @GetMapping
@@ -24,8 +28,12 @@ public class ContactController {
   }
 
   @PostMapping
-  public ResponseEntity<ContactResponse> createContact(@RequestBody ContactRequest contactRequest) {
-    ContactResponse contactResponse = this.contactService.saveContact(contactRequest);
+  public ResponseEntity<ContactResponse> createContact(@RequestPart ContactRequest contactRequest, @RequestPart(value = "file", required = false) MultipartFile file) {
+    String imageUrl = "";
+    if (file != null) {
+      imageUrl = this.fileService.uploadFile(file);
+    }
+    ContactResponse contactResponse = this.contactService.saveContact(contactRequest, imageUrl);
     return new ResponseEntity<>(contactResponse, HttpStatus.CREATED);
   }
 
