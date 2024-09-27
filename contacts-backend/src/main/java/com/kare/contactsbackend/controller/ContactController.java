@@ -38,4 +38,10 @@ public class ContactController {
   public ResponseEntity<ContactResponse> updateContact(@PathVariable Long id, @RequestBody ContactRequest contactRequest) {
     return new ResponseEntity<>(this.contactService.updateContact(id, contactRequest), HttpStatus.OK);
   }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+    this.contactService.deleteContact(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }

@@ -44,4 +44,11 @@ public class ContactService {
     contact.setEmail(contactRequest.getEmail());
     return mapper.toContactResponse(repository.save(contact));
   }
+
+  public void deleteContact(Long id) {
+    if (!repository.existsById(id)) {
+      throw new ContactNotFoundException("Contact not found with id: " + id);
+    }
+    repository.deleteById(id);
+  }
 }
