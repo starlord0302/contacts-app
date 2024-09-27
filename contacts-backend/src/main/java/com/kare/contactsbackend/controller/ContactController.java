@@ -28,4 +28,9 @@ public class ContactController {
     ContactResponse contactResponse = this.contactService.saveContact(contactRequest);
     return new ResponseEntity<>(contactResponse, HttpStatus.CREATED);
   }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<ContactResponse> getSingleContact(@PathVariable Long id) {
+    return new ResponseEntity<>(this.contactService.getContact(id), HttpStatus.OK);
+  }
 }
