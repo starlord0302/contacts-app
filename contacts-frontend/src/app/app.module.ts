@@ -7,6 +7,8 @@ import { ContactListComponent } from './components/contact-list/contact-list.com
 import { ContactComponent } from './components/contact/contact.component';
 import { ContactFormComponent } from './components/contact-form/contact-form.component';
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {provideHttpClient} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,9 +20,10 @@ import { ContactPageComponent } from './components/contact-page/contact-page.com
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [provideHttpClient()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
