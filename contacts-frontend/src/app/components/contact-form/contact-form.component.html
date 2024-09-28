@@ -1,1 +1,28 @@
-<p>contact-form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-3 d-flex">
+    <input type="file" id="uploadImage" style="display: none;" (change)="onFileSelected($event)" #fileInput/>
+    <img
+      [src]="selectedImageUrl ? selectedImageUrl : '/images/upload_image_placeholder.png'"
+      alt="Selected Image"
+      class="selected-image"/>
+    <div *ngIf="!selectedImageUrl">
+      <button type="button" class="btn btn-secondary" (click)="showFileSelector()">Add picture</button>
+    </div>
+    <div *ngIf="selectedImageUrl">
+      <button type="button" class="btn btn-secondary" (click)="showFileSelector()">Change picture</button>
+      <button type="button" class="btn btn-danger" (click)="removeImage()">X</button>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="fullNameInput" class="form-label">Name</label>
+    <input type="text" class="form-control" id="fullNameInput" formControlName="fullName">
+  </div>
+  <div class="mb-3">
+    <label for="phoneNumberInput" class="form-label">Phone number</label>
+    <input type="text" class="form-control" id="phoneNumberInput" formControlName="phoneNumber">
+  </div>
+  <div class="mb-3">
+    <label for="emailInput" class="form-label">Email address</label>
+    <input type="text" class="form-control" id="emailInput" formControlName="email">
+  </div>
+</form>

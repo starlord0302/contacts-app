@@ -9,6 +9,7 @@ import {Contact} from "../../interfaces/contact";
 })
 export class ContactPageComponent implements OnInit {
   contacts: Contact[] = [];
+  newContact: Contact | null = null;
 
   constructor(private contactService: ContactService) {
   }
@@ -27,5 +28,13 @@ export class ContactPageComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  updateNewContact(contact: Contact | null): void {
+    this.newContact = contact;
+    console.log(this.newContact);
+    if (this.newContact) {
+      this.contacts = [...this.contacts, this.newContact];
+    }
   }
 }

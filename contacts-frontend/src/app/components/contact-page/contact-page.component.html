@@ -1,5 +1,9 @@
 <div class="container">
   <h1>Contacts</h1>
-  <button>Add new</button>
+  <button type="button" data-bs-toggle="modal" data-bs-target="#modal">Add new</button>
   <ca-contact-list [contacts]="contacts"></ca-contact-list>
 </div>
+<ca-modal [title]="'Add contact'">
+  <ca-contact-form [newContact]="newContact" (contactSaved)="updateNewContact($event)"></ca-contact-form>
+</ca-modal>
+

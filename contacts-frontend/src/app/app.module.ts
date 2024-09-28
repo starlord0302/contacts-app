@@ -9,6 +9,7 @@ import { ContactFormComponent } from './components/contact-form/contact-form.com
 import { ContactPageComponent } from './components/contact-page/contact-page.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {provideHttpClient} from "@angular/common/http";
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {provideHttpClient} from "@angular/common/http";
     ContactListComponent,
     ContactComponent,
     ContactFormComponent,
-    ContactPageComponent
+    ContactPageComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

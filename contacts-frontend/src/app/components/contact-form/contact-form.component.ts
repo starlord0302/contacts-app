@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {ContactService} from "../../services/contact.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
+import {Contact} from "../../interfaces/contact";
 
 @Component({
   selector: 'ca-contact-form',
@@ -7,4 +10,64 @@ import { Component } from '@angular/core';
 })
 export class ContactFormComponent {
 
+  @Input() newContact: Contact | null = null;
+  @Output() contactSaved = new EventEmitter<Contact | null>();
+  @ViewChild('fileInput', {static: false}) fileInput!: ElementRef;
+  form: FormGroup;
+  selectedImageUrl: string | null = null;
+  selectedImageFile: File | null = null;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private contactService: ContactService
+  ) {
+    this.form = this.formBuilder.group({
+      fullName: [''],
+      email: [''],
+      phoneNumber: [''],
+    });
+  }
+
+  onSubmit(): void {
+    console.log(this.form.value);
+    this.contactService.saveContact(this.form.value, this.selectedImageFile).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.newContact = data;
+        this.contactSaved.emit(this.newContact);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
+
+  reset(): void {
+    this.form.reset();
+    this.selectedImageFile = null;
+    this.selectedImageUrl = null;
+  }
+
+  showFileSelector(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  onFileSelected(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      this.selectedImageFile = inputElement.files[0];
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.selectedImageUrl = reader.result as string;
+      };
+      reader.readAsDataURL(this.selectedImageFile);
+    } else {
+      console.log('No file selected');
+    }
+    inputElement.value = '';
+  }
+
+  removeImage(): void {
+    this.selectedImageUrl = null;
+  }
 }
