@@ -1,28 +1,55 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="mb-3 d-flex">
-    <input type="file" id="uploadImage" style="display: none;" (change)="onFileSelected($event)" #fileInput/>
-    <img
-      [src]="selectedImageUrl ? selectedImageUrl : '/images/upload_image_placeholder.png'"
-      alt="Selected Image"
-      class="selected-image"/>
-    <div *ngIf="!selectedImageUrl">
-      <button type="button" class="btn btn-secondary" (click)="showFileSelector()">Add picture</button>
+  <div class="my-3 d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+      <input type="file" id="uploadImage" style="display: none;" (change)="onFileSelected($event)" #fileInput/>
+      <div class="profile-picture-container">
+        <img
+          [src]="selectedImageUrl ? selectedImageUrl : '/images/upload_image_placeholder.png'"
+          alt="Selected Image"
+          class="rounded-circle img-thumbnail"/>
+      </div>
+      <div *ngIf="!selectedImageUrl">
+        <button type="button" class="btn btn-primary ms-3 ps-3 pt-2 pb-2 pe-3" (click)="showFileSelector()">
+          <img src="/icons/add.svg" class="pe-2"/>
+          Add picture
+        </button>
+      </div>
     </div>
-    <div *ngIf="selectedImageUrl">
-      <button type="button" class="btn btn-secondary" (click)="showFileSelector()">Change picture</button>
-      <button type="button" class="btn btn-danger" (click)="removeImage()">X</button>
+    <div *ngIf="selectedImageUrl" class="ms-2 d-flex align-items-center">
+      <button type="button" class="btn btn-primary ps-2 pt-2 pb-2 pe-3" (click)="showFileSelector()">
+        <img src="/icons/change.svg" class="pe-2"/>
+        Change picture
+      </button>
+      <button type="button" class="btn btn-primary p-2 ms-2" (click)="removeImage()">
+        <img src="/icons/delete.svg"/>
+      </button>
     </div>
   </div>
   <div class="mb-3">
     <label for="fullNameInput" class="form-label">Name</label>
-    <input type="text" class="form-control" id="fullNameInput" formControlName="fullName">
+    <input
+      type="text"
+      class="form-control"
+      id="fullNameInput"
+      placeholder="Jamie Wright"
+      formControlName="fullName">
   </div>
   <div class="mb-3">
     <label for="phoneNumberInput" class="form-label">Phone number</label>
-    <input type="text" class="form-control" id="phoneNumberInput" formControlName="phoneNumber">
+    <input
+      type="text"
+      class="form-control"
+      id="phoneNumberInput"
+      placeholder="+01 234 5678"
+      formControlName="phoneNumber">
   </div>
   <div class="mb-3">
     <label for="emailInput" class="form-label">Email address</label>
-    <input type="text" class="form-control" id="emailInput" formControlName="email">
+    <input
+      type="text"
+      class="form-control"
+      id="emailInput"
+      placeholder="jamie.wright@mail.com"
+      formControlName="email">
   </div>
 </form>

@@ -1,0 +1,20 @@
+@import "../partials/_constants.scss";
+
+.modal-dialog {
+  margin-top: 10rem;
+}
+
+.modal-content {
+  background-color: $contact-background-color;
+  border-radius: 8px;
+  border: none;
+  width: 364px;
+}
+
+.modal-header {
+  border: none;
+}
+
+.modal-footer {
+  border: none;
+}

@@ -1,0 +1,38 @@
+@import "../partials/_constants.scss";
+
+.btn-primary {
+  background-color: $grey-60;
+  color: $contact-font-color-primary;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: $grey-50;
+  border: none;
+}
+
+.btn-primary:active,
+.btn:first-child:active,
+.btn:focus-visible,
+:not(.btn-check) + .btn:active {
+  background-color: $grey-40;
+  border: none;
+  box-shadow: unset;
+}
+
+.btn-secondary {
+  padding: 8px 16px;
+  background-color: $grey-100;
+  border: unset;
+}
+
+.btn-secondary:hover {
+  background-color: $grey-90;
+  border: unset;
+}
+
+.btn-secondary:active {
+  background-color: $grey-80;
+  border: unset;
+  box-shadow: unset;
+}

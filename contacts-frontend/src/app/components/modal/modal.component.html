@@ -1,16 +1,15 @@
-<div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+<div class="modal fade" data-bs-backdrop="static" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="modalLabel">{{title}}</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="close()"></button>
+      <div class="modal-header ps-4 pe-4 pt-4 pb-0">
+        <h2 id="modalLabel">{{title}}</h2>
       </div>
-      <div class="modal-body">
+      <div class="modal-body px-4 py-0">
         <ng-content></ng-content>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">Close</button>
-        <button type="button" data-bs-dismiss="modal" class="btn btn-primary" (click)="saveChanges()">Save changes</button>
+      <div class="modal-footer p-4">
+        <button type="button" class="btn btn-secondary ps-3 pt-2 pb-2 pe-3" data-bs-dismiss="modal" (click)="close()">Cancel</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-primary ms-2 ps-3 pt-2 pb-2 pe-3" (click)="saveChanges()">Done</button>
       </div>
     </div>
   </div>

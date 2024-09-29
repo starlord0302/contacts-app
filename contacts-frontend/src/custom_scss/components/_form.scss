@@ -1,0 +1,31 @@
+@import "../partials/_constants.scss";
+
+.form-label {
+  margin: unset;
+  color: $contact-font-color-secondary;
+}
+
+.form-control {
+  background-color: $grey-80;
+  border: 1px solid $grey-60;
+  color: $contact-font-color-primary;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+}
+
+.form-control::placeholder {
+  color: $contact-font-color-tertiary;
+}
+
+.form-control:hover {
+  background-color: $grey-80;
+  border: 1px solid $grey-30;
+}
+
+.form-control:focus {
+  background-color: $grey-60;
+  border: 1px solid $grey-10;
+  color: $contact-font-color-primary;
+  box-shadow: unset;
+}
