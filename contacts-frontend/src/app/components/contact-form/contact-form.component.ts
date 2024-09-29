@@ -10,7 +10,6 @@ import {Contact} from "../../interfaces/contact";
 })
 export class ContactFormComponent implements OnInit {
 
-  @Input() newContact: Contact | null = null;
   @Output() contactSaved = new EventEmitter<Contact | null>();
   @ViewChild('fileInput', {static: false}) fileInput!: ElementRef;
   form: FormGroup;
@@ -52,9 +51,7 @@ export class ContactFormComponent implements OnInit {
   saveNewContact(): void {
     this.contactService.saveContact(this.form.value, this.selectedImageFile).subscribe({
       next: (data) => {
-        console.log(data);
-        this.newContact = data;
-        this.contactSaved.emit(this.newContact);
+        this.contactSaved.emit(data);
       },
       error: (error) => {
         console.error(error);
@@ -65,7 +62,6 @@ export class ContactFormComponent implements OnInit {
   updateContact(): void {
     this.contactService.updateContact(this.editContact!.id, this.form.value, this.selectedImageFile).subscribe({
       next: (data) => {
-        console.log(data);
         this.contactSaved.emit(data);
       }
     })

@@ -14,6 +14,7 @@ export class ContactService {
 
   contactSubject: BehaviorSubject<Contact | null> = new BehaviorSubject<Contact | null>(null);
   editMode: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  contactIdToDelete: Subject<number> = new Subject<number>();
 
   constructor(private http: HttpClient) {
     this.apiUrl = environment.apiBaseUrl;
@@ -45,12 +46,24 @@ export class ContactService {
     return this.http.put<Contact>(`${this.apiUrl}/${id}`, formData);
   }
 
+  deleteContact(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
+
   emitContact(contact: Contact) {
     this.contactSubject.next(contact);
   }
 
   getEditMode(): Observable<boolean> {
     return this.editMode.asObservable();
+  }
+
+  emitContactIdToDelete(id: number) {
+    this.contactIdToDelete.next(id);
+  }
+
+  getEmittedContactIdToDelete(): Observable<number> {
+    return this.contactIdToDelete.asObservable();
   }
 
 }

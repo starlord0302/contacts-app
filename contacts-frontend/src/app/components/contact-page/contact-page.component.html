@@ -4,6 +4,6 @@
   <ca-contact-list [contacts]="contacts"></ca-contact-list>
 </div>
 <ca-modal [title]="(editMode$ | async) ? 'Edit contact' : 'Add contact'">
-  <ca-contact-form [newContact]="newContact" (contactSaved)="updateNewContact($event)"></ca-contact-form>
+  <ca-contact-form (contactSaved)="updateNewContact($event)"></ca-contact-form>
 </ca-modal>
 

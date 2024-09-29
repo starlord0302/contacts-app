@@ -18,4 +18,14 @@ export class ContactComponent {
     this.contactService.editMode.next(true);
   }
 
+  removeContact() {
+    this.contactService.deleteContact(this.contact.id).subscribe({
+      next: () => {
+        this.contactService.emitContactIdToDelete(this.contact.id);
+      },
+      error: (error) => {
+        console.error(error);
+      }
+    });
+  }
 }
