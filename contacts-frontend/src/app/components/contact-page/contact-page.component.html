@@ -1,9 +1,35 @@
-<div class="container">
-  <h1>Contacts</h1>
-  <button type="button" data-bs-toggle="modal" data-bs-target="#modal">Add new</button>
-  <ca-contact-list [contacts]="contacts"></ca-contact-list>
+<div class="parent">
+  <div class="div1 grey-div"></div>
+  <div class="div2 grey-div"></div>
+  <div class="div3 grey-div"></div>
+  <div class="div4 grey-div d-flex align-items-center justify-content-end">
+    <button type="button" class="btn btn-secondary p-2 me-4">
+      <img src="/icons/back_arrow.svg"/>
+    </button>
+  </div>
+  <div class="div5 grey-div d-flex align-items-center justify-content-between">
+    <h1 class="ms-4">Contacts</h1>
+    <div class="d-flex">
+      <button type="button" class="btn btn-secondary p-2 me-2">
+        <img src="/icons/settings.svg"/>
+      </button>
+      <button type="button" class="btn btn-secondary p-2">
+        <img src="/icons/profile_pic.svg"/>
+      </button>
+      <button type="button" class="btn btn-primary mx-4 add-new-contact-btn" data-bs-toggle="modal" data-bs-target="#modal">Add new</button>
+    </div>
+  </div>
+  <div class="div6 grey-div d-flex justify-content-start align-items-center">
+    <button type="button" class="btn btn-secondary p-2 ms-4">
+      <img src="/icons/light_mode.svg"/>
+    </button>
+  </div>
+  <div class="div7 grey-div"></div>
+  <div class="div8 grey-div">
+    <ca-contact-list [contacts]="contacts"></ca-contact-list>
+    <ca-modal [title]="(editMode$ | async) ? 'Edit contact' : 'Add contact'">
+      <ca-contact-form (contactSaved)="updateNewContact($event)"></ca-contact-form>
+    </ca-modal>
+  </div>
+  <div class="div9 grey-div"></div>
 </div>
-<ca-modal [title]="(editMode$ | async) ? 'Edit contact' : 'Add contact'">
-  <ca-contact-form (contactSaved)="updateNewContact($event)"></ca-contact-form>
-</ca-modal>
-

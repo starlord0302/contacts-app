@@ -2,6 +2,9 @@
 
 .modal-dialog {
   margin-top: 10rem;
+  @media screen and (max-width: 650px) {
+    margin-top: 5rem;
+  }
 }
 
 .modal-content {

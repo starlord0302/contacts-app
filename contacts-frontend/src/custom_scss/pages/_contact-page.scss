@@ -4,3 +4,96 @@ body {
   background-color: $contact-background-color;
   color: $contact-font-color-primary;
 }
+
+.parent {
+  background-color: $contact-font-color-tertiary;
+  display: grid;
+  grid-template-columns: 0.3fr 1fr 0.3fr;
+  grid-template-rows: repeat(2, 0.1fr) 1fr;
+  grid-template-areas: " div1 div2 div3"
+                       " div4 div5 div6"
+                       " div7 div8 div9";
+  gap: 1px;
+  height: 100vh;
+
+  @media screen and (max-width: 650px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: " div4 div6 "
+                         " div5 div5 "
+                         " div8 div8 ";
+    gap: unset;
+  }
+}
+
+.grey-div {
+  background-color: $contact-background-color;
+}
+
+.div1 {
+  grid-area: div1;
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
+}
+
+.div2 {
+  grid-area: div2;
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
+}
+
+.div3 {
+  grid-area: div3;
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
+}
+
+.div4 {
+  grid-area: div4;
+  @media screen and (max-width: 650px) {
+    justify-content: flex-start !important;
+    button {
+      margin-right: unset !important;
+      margin-left: 1.5rem;
+    }
+  }
+}
+.div5 {
+  grid-area: div5;
+  @media screen and (max-width: 650px) {
+    .add-new-contact-btn {
+      margin-right: 0.5rem !important;
+      margin-left: 0.5rem !important;
+    }
+  }
+}
+.div6 {
+  grid-area: div6;
+  @media screen and (max-width: 650px) {
+    justify-content: flex-end !important;
+    button {
+      margin-left: unset !important;
+      margin-right: 1.5rem
+    }
+  }
+}
+
+.div7 {
+  grid-area: div7;
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
+}
+
+.div8 { grid-area: div8; }
+
+.div9 {
+  grid-area: div9;
+  @media screen and (max-width: 650px) {
+    display: none;
+  }
+}
+
+
