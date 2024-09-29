@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {Contact} from "../../interfaces/contact";
+import {ContactService} from "../../services/contact.service";
 
 @Component({
   selector: 'ca-contact',
@@ -8,4 +9,13 @@ import {Contact} from "../../interfaces/contact";
 })
 export class ContactComponent {
   @Input() contact!: Contact;
+
+  constructor(private contactService: ContactService) {
+  }
+
+  openEditMode() {
+    this.contactService.emitContact(this.contact);
+    this.contactService.editMode.next(true);
+  }
+
 }

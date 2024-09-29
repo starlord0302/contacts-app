@@ -1,4 +1,4 @@
-import {Component, ElementRef, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ContactService} from "../../services/contact.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {Contact} from "../../interfaces/contact";
@@ -8,7 +8,7 @@ import {Contact} from "../../interfaces/contact";
   templateUrl: './contact-form.component.html',
   styleUrl: './contact-form.component.scss'
 })
-export class ContactFormComponent {
+export class ContactFormComponent implements OnInit {
 
   @Input() newContact: Contact | null = null;
   @Output() contactSaved = new EventEmitter<Contact | null>();
@@ -16,6 +16,7 @@ export class ContactFormComponent {
   form: FormGroup;
   selectedImageUrl: string | null = null;
   selectedImageFile: File | null = null;
+  editContact: Contact | null = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,8 +29,27 @@ export class ContactFormComponent {
     });
   }
 
+  ngOnInit(): void {
+    this.contactService.contactSubject.subscribe({
+      next: (contact) => {
+          this.editContact = contact;
+          if (this.editContact) {
+            this.form.patchValue(this.editContact);
+            this.selectedImageUrl = this.editContact.imageUrl;
+          }
+        }
+    });
+  }
+
   onSubmit(): void {
-    console.log(this.form.value);
+    if (this.editContact) {
+      this.updateContact();
+    } else {
+      this.saveNewContact();
+    }
+  }
+
+  saveNewContact(): void {
     this.contactService.saveContact(this.form.value, this.selectedImageFile).subscribe({
       next: (data) => {
         console.log(data);
@@ -40,6 +60,15 @@ export class ContactFormComponent {
         console.error(error);
       }
     });
+  }
+
+  updateContact(): void {
+    this.contactService.updateContact(this.editContact!.id, this.form.value, this.selectedImageFile).subscribe({
+      next: (data) => {
+        console.log(data);
+        this.contactSaved.emit(data);
+      }
+    })
   }
 
   reset(): void {

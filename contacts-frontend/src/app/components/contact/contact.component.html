@@ -1,4 +1,16 @@
-<img [src]="contact.imageUrl != '' ? contact.imageUrl : '/images/upload_image_placeholder.png'" class="contact-image">
-<span>{{contact.fullName}}</span>
-<span>{{contact.phoneNumber}}</span>
-<span>{{contact.email}}</span>
+<div class="d-flex">
+  <img [src]="contact.imageUrl != '' ? contact.imageUrl : '/images/upload_image_placeholder.png'" class="contact-image">
+  <span>{{contact.fullName}}</span>
+  <span>{{contact.phoneNumber}}</span>
+  <span>{{contact.email}}</span>
+  <div class="dropdown">
+    <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      ...
+    </button>
+    <ul class="dropdown-menu">
+      <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#modal" (click)="openEditMode()">Edit</button></li>
+      <li><button class="dropdown-item" type="button">Favorite</button></li>
+      <li><button class="dropdown-item" type="button">Remove</button></li>
+    </ul>
+  </div>
+</div>

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ContactService} from "../../services/contact.service";
 import {Contact} from "../../interfaces/contact";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'ca-contact-page',
@@ -10,19 +11,20 @@ import {Contact} from "../../interfaces/contact";
 export class ContactPageComponent implements OnInit {
   contacts: Contact[] = [];
   newContact: Contact | null = null;
+  editMode$!: Observable<boolean>;
 
   constructor(private contactService: ContactService) {
   }
 
   ngOnInit(): void {
     this.fetchAllContacts();
+    this.editMode$ = this.contactService.getEditMode();
   }
 
   fetchAllContacts(): void {
-    this.contactService.getContacts().subscribe( {
+    this.contactService.getContacts().subscribe({
       next: (data) => {
         this.contacts = data.contacts;
-        console.log(this.contacts);
       },
       error: (error) => {
         console.error(error);
@@ -31,10 +33,23 @@ export class ContactPageComponent implements OnInit {
   }
 
   updateNewContact(contact: Contact | null): void {
-    this.newContact = contact;
-    console.log(this.newContact);
-    if (this.newContact) {
-      this.contacts = [...this.contacts, this.newContact];
+    if (!contact) {
+      return;
     }
+
+    const existingContactIndex = this.contacts.findIndex((c) => c.id === contact.id);
+
+    if (existingContactIndex >= 0) {
+      this.contacts = this.contacts.map((c) => {
+        if (c.id === contact.id) {
+          return contact;
+        }
+        return c;
+      });
+    } else {
+      this.contacts = [...this.contacts, contact];
+    }
+
+    this.newContact = contact;
   }
 }
