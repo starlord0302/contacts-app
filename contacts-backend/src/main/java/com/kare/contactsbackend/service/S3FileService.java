@@ -4,6 +4,7 @@ import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.PutObjectRequest;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,8 +12,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-@Service
-public class FileService {
+@Service("s3")
+@Profile("production")
+public class S3FileService extends BaseFileService {
 
   private final AmazonS3 amazonS3;
 
@@ -21,10 +23,11 @@ public class FileService {
   @Value("${contacts.s3.bucketName}")
   private String bucketName;
 
-  public FileService(AmazonS3 amazonS3) {
+  public S3FileService(AmazonS3 amazonS3) {
     this.amazonS3 = amazonS3;
   }
 
+  @Override
   public String uploadFile(MultipartFile multipartFile) {
     String fileURL = "";
     File file = null;
