@@ -19,7 +19,7 @@ public class ContactController {
   private final ContactService contactService;
   private final BaseFileService fileService;
 
-  public ContactController(ContactService contactService, @Qualifier("local") BaseFileService fileService) {
+  public ContactController(ContactService contactService, @Qualifier("s3") BaseFileService fileService) {
     this.contactService = contactService;
     this.fileService = fileService;
   }
