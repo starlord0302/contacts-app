@@ -69,7 +69,7 @@ cd contacts-app
 
    ```bash
    cd contacts-frontend
-   npm start development
+   npm run dev
    ```
 
   This will start the Angular development server on `http://localhost:4200`.
