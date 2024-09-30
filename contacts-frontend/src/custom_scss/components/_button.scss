@@ -14,7 +14,8 @@
 .btn-primary:active,
 .btn:first-child:active,
 .btn:focus-visible,
-:not(.btn-check) + .btn:active {
+:not(.btn-check) + .btn:active,
+:not(.btn-check) + .btn:active:focus-visible {
   background-color: $grey-40;
   border: none;
   box-shadow: unset;
@@ -35,4 +36,27 @@
   background-color: $grey-80;
   border: unset;
   box-shadow: unset;
+}
+
+.add-new-contact-btn {
+  border-radius: 30px;
+  border: double 1px transparent;
+  background-image:
+    linear-gradient($grey-60-70-rgba, $grey-60),
+    linear-gradient(to bottom, $grey-30, $grey-30-0-rgba);
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
+  transition: all 80ms ease-out;
+}
+
+.add-new-contact-btn:hover,
+.add-new-contact-btn:active,
+.add-new-contact-btn:focus-visible {
+  border-radius: 30px;
+  border: double 1px transparent !important;
+  background-image:
+    linear-gradient($grey-60-70-rgba, $grey-60, rgba(255, 255, 255, 0.04)),
+    linear-gradient(to bottom, $grey-30, $grey-30-0-rgba);
+  background-clip: padding-box, border-box;
+  background-origin: border-box;
 }

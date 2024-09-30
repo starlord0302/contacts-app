@@ -22,20 +22,26 @@
       <ul class="dropdown-menu p-0">
         <li>
           <button class="py-2 dropdown-item first" type="button" data-bs-toggle="modal" data-bs-target="#modal" (click)="openEditMode()">
-            <img src="/icons/settings.svg" class="me-3"/>
-            Edit
+            <span class="d-flex justify-content-start align-items-center">
+              <img src="/icons/settings.svg" class="me-3"/>
+              Edit
+            </span>
           </button>
         </li>
         <li>
           <button class="py-2 dropdown-item" type="button">
-            <img src="/icons/favourite.svg" class="me-3"/>
-            Favorite
+            <span class="d-flex justify-content-start align-items-center">
+              <img src="/icons/favourite.svg" class="me-3"/>
+              Favorite
+            </span>
           </button>
         </li>
         <li>
           <button class="py-2 dropdown-item last" type="button" (click)="removeContact()">
-            <img src="/icons/delete.svg" class="me-3"/>
-            Remove
+            <span class="d-flex justify-content-start align-items-center">
+              <img src="/icons/delete.svg" class="me-3"/>
+              Remove
+            </span>
           </button>
         </li>
       </ul>
