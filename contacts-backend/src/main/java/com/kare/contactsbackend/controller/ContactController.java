@@ -3,8 +3,10 @@ package com.kare.contactsbackend.controller;
 import com.kare.contactsbackend.dto.ContactListResponse;
 import com.kare.contactsbackend.dto.ContactRequest;
 import com.kare.contactsbackend.dto.ContactResponse;
+import com.kare.contactsbackend.service.BaseFileService;
 import com.kare.contactsbackend.service.ContactService;
-import com.kare.contactsbackend.service.FileService;
+import com.kare.contactsbackend.service.S3FileService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class ContactController {
 
   private final ContactService contactService;
-  private final FileService fileService;
+  private final BaseFileService fileService;
 
-  public ContactController(ContactService contactService, FileService fileService) {
+  public ContactController(ContactService contactService, @Qualifier("local") BaseFileService fileService) {
     this.contactService = contactService;
     this.fileService = fileService;
   }
