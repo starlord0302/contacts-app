@@ -18,10 +18,11 @@ body {
 
   @media screen and (max-width: 650px) {
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: " div4 div6 "
-                         " div5 div5 "
-                         " div8 div8 ";
-    gap: unset;
+    grid-template-rows: 0.2fr 1fr 0.1fr;
+    grid-template-areas: " div5 div5 "
+                         " div8 div8 "
+                         " div4 div6 ";
+
   }
 }
 
@@ -87,7 +88,14 @@ body {
   }
 }
 
-.div8 { grid-area: div8; }
+.div8 {
+  grid-area: div8;
+  @media screen and (max-width: 650px) {
+    > div:first-child {
+      margin-top: 2rem !important;
+    }
+  }
+}
 
 .div9 {
   grid-area: div9;

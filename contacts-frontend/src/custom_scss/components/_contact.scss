@@ -1,0 +1,29 @@
+@import "../partials/_constants.scss";
+
+.message {
+  color: $contact-font-color-secondary;
+}
+
+.dropdown-menu {
+  background-color: $grey-80;
+  border: unset;
+  border-radius: 8px;
+
+  li {
+    button {
+      color: $contact-font-color-primary;
+      img {
+        filter: contrast(0.3);
+      }
+    }
+  }
+
+  button:hover {
+    background-color: $grey-70;
+    color: $contact-font-color-primary;
+  }
+
+  button:active {
+    background-color: $grey-60;
+  }
+}

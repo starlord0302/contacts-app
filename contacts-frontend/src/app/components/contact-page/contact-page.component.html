@@ -26,10 +26,12 @@
   </div>
   <div class="div7 grey-div"></div>
   <div class="div8 grey-div">
-    <ca-contact-list [contacts]="contacts"></ca-contact-list>
-    <ca-modal [title]="(editMode$ | async) ? 'Edit contact' : 'Add contact'">
-      <ca-contact-form (contactSaved)="updateNewContact($event)"></ca-contact-form>
-    </ca-modal>
+    <div class="mt-2 mx-4">
+      <ca-contact-list [contacts]="contacts"></ca-contact-list>
+      <ca-modal [title]="(editMode$ | async) ? 'Edit contact' : 'Add contact'">
+        <ca-contact-form (contactSaved)="updateNewContact($event)"></ca-contact-form>
+      </ca-modal>
+    </div>
   </div>
   <div class="div9 grey-div"></div>
 </div>

@@ -1,16 +1,64 @@
-<div class="d-flex">
-  <img [src]="contact.imageUrl != '' ? contact.imageUrl : '/images/upload_image_placeholder.png'" class="contact-image">
-  <h3>{{contact.fullName}}</h3>
-  <span>{{contact.phoneNumber}}</span>
-  <span>{{contact.email}}</span>
-  <div class="dropdown">
-    <button class="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-      ...
-    </button>
-    <ul class="dropdown-menu">
-      <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#modal" (click)="openEditMode()">Edit</button></li>
-      <li><button class="dropdown-item" type="button">Favorite</button></li>
-      <li><button class="dropdown-item" type="button" (click)="removeContact()">Remove</button></li>
-    </ul>
+<div class="d-flex align-items-center justify-content-between" (mouseenter)="showButtons()" (mouseleave)="hideButtons()">
+  <div class="d-flex my-2">
+    <div class="profile-picture-container">
+      <img [src]="contact.imageUrl != '' ? contact.imageUrl : '/images/upload_image_placeholder.png'" class="rounded-circle img-thumbnail">
+    </div>
+    <div class="ms-3 d-flex flex-column">
+      <h3 class="mb-0">{{contact.fullName}}</h3>
+      <span class="message">{{contact.phoneNumber}}</span>
+    </div>
   </div>
+  <div class="operations d-flex" *ngIf="show">
+    <button type="button" class="btn btn-secondary p-2">
+      <img src="/icons/mute.svg"/>
+    </button>
+    <button type="button" class="btn btn-secondary p-2">
+      <img src="/icons/call.svg"/>
+    </button>
+    <div class="dropdown">
+      <button class="btn btn-secondary p-2" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="/icons/more.svg"/>
+      </button>
+      <ul class="dropdown-menu p-0">
+        <li>
+          <button class="py-2 dropdown-item first" type="button" data-bs-toggle="modal" data-bs-target="#modal" (click)="openEditMode()">
+            <img src="/icons/settings.svg" class="me-3"/>
+            Edit
+          </button>
+        </li>
+        <li>
+          <button class="py-2 dropdown-item" type="button">
+            <img src="/icons/favourite.svg" class="me-3"/>
+            Favorite
+          </button>
+        </li>
+        <li>
+          <button class="py-2 dropdown-item last" type="button" (click)="removeContact()">
+            <img src="/icons/delete.svg" class="me-3"/>
+            Remove
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <ul class="dropdown-menu p-0">
+    <li>
+      <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#modal" (click)="openEditMode()">
+        <img src="/icons/settings.svg" class="me-2"/>
+        Edit
+      </button>
+    </li>
+    <li>
+      <button class="dropdown-item" type="button">
+        <img src="/icons/favourite.svg" class="me-2"/>
+        Favorite
+      </button>
+    </li>
+    <li>
+      <button class="dropdown-item" type="button" (click)="removeContact()">
+        <img src="/icons/delete.svg" class="me-2"/>
+        Remove
+      </button>
+    </li>
+  </ul>
 </div>

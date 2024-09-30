@@ -9,6 +9,7 @@ import {ContactService} from "../../services/contact.service";
 })
 export class ContactComponent {
   @Input() contact!: Contact;
+  show: boolean = false;
 
   constructor(private contactService: ContactService) {
   }
@@ -27,5 +28,13 @@ export class ContactComponent {
         console.error(error);
       }
     });
+  }
+
+  showButtons() {
+    this.show = true;
+  }
+
+  hideButtons() {
+    this.show = false;
   }
 }
